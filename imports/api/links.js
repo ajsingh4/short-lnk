@@ -28,7 +28,9 @@ Meteor.methods({
       _id: shortid.generate(),
       url,
       userId: this.userId,
-      visible: true
+      visible: true,
+      visitedCount: 0,
+      lastVisitedAt: null
     });
   },
   "links.setVisibility"(_id, visible) {
@@ -46,6 +48,29 @@ Meteor.methods({
         type: Boolean,
       }
     }).validate({visible});
-    Links.update({_id, userId: this.userId}, {$set: {visible}})
+    Links.update({
+      _id, userId: this.userId
+    }, {
+      $set: {visible}
+    });
+  },
+
+  "links.trackVisit"(_id) {
+    new SimpleSchema({
+      _id: {
+        type: String,
+        min:1
+      }
+    }).validate({_id});
+
+    Links.update({_id}, {
+      $set: {
+        lastVisitedAt:new Date().getTime()
+      },
+      $inc: {
+        visitedCount: 1
+      }
+    })
+
   }
 });
