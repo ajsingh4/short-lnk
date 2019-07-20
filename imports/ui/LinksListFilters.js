@@ -22,11 +22,11 @@ export default class LinksListFilters extends React.Component {
   render() {
     return (
       <div>
-        <label>
-          <input type="checkbox" checked={!this.state.showVisible} onChange={(e) => {
+        <label className="checkbox">
+          <input className="checkbox__box" type="checkbox" checked={!this.state.showVisible} onChange={(e) => {
             Session.set("showVisible", !e.target.checked);
           }}/>
-          Show hidden links
+          show hidden links
         </label>
       </div>
     );
