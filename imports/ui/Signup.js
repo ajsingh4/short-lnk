@@ -31,7 +31,7 @@ export default class Signup extends React.Component {
         //If there is an error, then add in the error, otherwise undefined
       <div className="boxed-view">
         <div className="boxed-view__box">
-          <h1>This is my signup page</h1>
+          <h1>Join Short Lnk</h1>
           {this.state.error ? <p>{this.state.error}</p> : undefined}
           <form onSubmit= {this.onSubmit.bind(this)} noValidate className= "boxed-view__form">
             <input type="email" ref="email" name="email" placeholder="Email"/>
